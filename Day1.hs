@@ -1,8 +1,6 @@
 module Day1 (solve) where
 
 import AdventOfCode
-import Data.Foldable (asum, find)
-import Data.Maybe (fromMaybe)
 
 parse :: String -> [Int]
 parse = map read . lines

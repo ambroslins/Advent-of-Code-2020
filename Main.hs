@@ -4,6 +4,7 @@ import AdventOfCode
 import Control.Monad (forM_)
 import qualified Data.IntMap as IntMap
 import qualified Day1
+import qualified Day2
 import System.Environment
 import Text.Read (readMaybe)
 
@@ -28,5 +29,6 @@ printSolution i s = do
 solutions :: IntMap.IntMap Solution
 solutions =
   IntMap.fromList
-    [ (1, Day1.solve)
+    [ (1, Day1.solve),
+      (2, Day2.solve)
     ]
