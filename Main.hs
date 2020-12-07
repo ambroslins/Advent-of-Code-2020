@@ -6,6 +6,7 @@ import qualified Data.IntMap as IntMap
 import qualified Day1
 import qualified Day2
 import qualified Day3
+import qualified Day4
 import System.Environment
 import Text.Read (readMaybe)
 
@@ -32,5 +33,6 @@ solutions =
   IntMap.fromList
     [ (1, Day1.solve),
       (2, Day2.solve),
-      (3, Day3.solve)
+      (3, Day3.solve),
+      (4, Day4.solve)
     ]

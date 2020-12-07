@@ -4,11 +4,13 @@ module AdventOfCode
     module Data.Maybe,
     module Data.Foldable,
     module Data.Text,
+    module Control.Applicative,
     Map,
     Set,
   )
 where
 
+import Control.Applicative (many, some, (<|>))
 import Data.Attoparsec.Text
   ( Parser,
     anyChar,
@@ -22,7 +24,6 @@ import Data.Attoparsec.Text
     endOfLine,
     inClass,
     letter,
-    many',
     many1,
     manyTill,
     notChar,
