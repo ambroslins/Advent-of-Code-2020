@@ -10,6 +10,7 @@ module AdventOfCode
     solveParser,
     sepEndBy,
     sepEndBy1,
+    word,
   )
 where
 
@@ -38,6 +39,7 @@ import Data.Attoparsec.Text
     sepBy1,
     signed,
     skip,
+    skipMany,
     skipSpace,
     skipWhile,
     space,
@@ -53,10 +55,12 @@ import Data.Text (Text, pack, unpack)
 type Solution = String -> (String, String)
 
 solveParser :: Show b => Parser a -> (a -> b) -> (a -> b) -> Solution
-solveParser p f1 f2 input = case parseOnly p (pack input) of
+solveParser p f1 f2 input = case parseOnly (p <* endOfInput) (pack input) of
   Left e -> (e, "")
   Right x -> (show $ f1 x, show $ f2 x)
 
 sepEndBy p sep = p `sepBy` sep <* sep
 
 sepEndBy1 p sep = p `sepBy1` sep <* sep
+
+word = many1 letter <* skipSpace
