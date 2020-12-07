@@ -18,11 +18,12 @@ main =
           IntMap.lookup x solutions
 
 printSolution :: Int -> Solution -> IO ()
-printSolution i (f1, f2) = do
+printSolution i s = do
   input <- readFile $ "input/" ++ show i ++ ".txt"
   putStrLn $ "Day " ++ show i ++ ":"
-  putStrLn $ f1 input
-  putStrLn $ f2 input
+  let (s1, s2) = s input
+  putStrLn $ s1
+  putStrLn $ s2
 
 solutions :: IntMap.IntMap Solution
 solutions =

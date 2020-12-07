@@ -7,7 +7,8 @@ import Data.Maybe (fromMaybe)
 parse :: String -> [Int]
 parse = map read . lines
 
-solve = (show . solve1 . parse, show . solve2 . parse)
+solve :: Solution
+solve input = let x = parse input in (show $ solve1 x, show $ solve2 x)
 
 solve1 :: [Int] -> Int
 solve1 xs = fromMaybe 0 $ asum $ map f xs
