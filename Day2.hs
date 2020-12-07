@@ -18,9 +18,7 @@ parsePassword = do
   pure $ Password (x, y) c s
 
 solve :: Solution
-solve input = case parseOnly (parsePassword `sepBy` endOfLine <* endOfLine) (pack input) of
-  Left e -> (e, "")
-  Right x -> (show $ solve1 x, show $ solve2 x)
+solve = solveParser (parsePassword `sepBy` endOfLine <* endOfLine) solve1 solve2
 
 solve1 :: [Password] -> Int
 solve1 = length . filter isVaildPassword1

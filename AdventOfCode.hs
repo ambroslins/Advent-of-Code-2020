@@ -7,6 +7,9 @@ module AdventOfCode
     module Control.Applicative,
     Map,
     Set,
+    solveParser,
+    sepEndBy,
+    sepEndBy1,
   )
 where
 
@@ -48,3 +51,12 @@ import Data.Set (Set)
 import Data.Text (Text, pack, unpack)
 
 type Solution = String -> (String, String)
+
+solveParser :: Show b => Parser a -> (a -> b) -> (a -> b) -> Solution
+solveParser p f1 f2 input = case parseOnly p (pack input) of
+  Left e -> (e, "")
+  Right x -> (show $ f1 x, show $ f2 x)
+
+sepEndBy p sep = p `sepBy` sep <* sep
+
+sepEndBy1 p sep = p `sepBy1` sep <* sep

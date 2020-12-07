@@ -19,9 +19,11 @@ parsePassport =
       )
 
 solve :: Solution
-solve input = case parseOnly (parsePassport `sepBy` endOfLine) (pack input) of
-  Left e -> (e, "")
-  Right x -> (show $ length $ filter isValid1 x, show $ length $ filter isValid2 x)
+solve =
+  solveParser
+    (parsePassport `sepBy` endOfLine)
+    (length . filter isValid1)
+    (length . filter isValid1)
 
 isValid1 :: Passport -> Bool
 isValid1 p = all (`Map.member` p) ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
