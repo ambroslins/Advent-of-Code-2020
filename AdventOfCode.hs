@@ -7,10 +7,12 @@ module AdventOfCode
     module Control.Applicative,
     Map,
     Set,
+    Vector,
     solveParser,
     sepEndBy,
     sepEndBy1,
     word,
+    symbol,
   )
 where
 
@@ -51,10 +53,11 @@ import Data.Map (Map)
 import Data.Maybe (fromMaybe)
 import Data.Set (Set)
 import Data.Text (Text, pack, unpack)
+import Data.Vector (Vector)
 
 type Solution = String -> (String, String)
 
-solveParser :: Show b => Parser a -> (a -> b) -> (a -> b) -> Solution
+solveParser :: (Show b, Show c) => Parser a -> (a -> b) -> (a -> c) -> Solution
 solveParser p f1 f2 input = case parseOnly (p <* endOfInput) (pack input) of
   Left e -> (e, "")
   Right x -> (show $ f1 x, show $ f2 x)
@@ -64,3 +67,5 @@ sepEndBy p sep = p `sepBy` sep <* sep
 sepEndBy1 p sep = p `sepBy1` sep <* sep
 
 word = many1 letter <* skipSpace
+
+symbol s = string s <* skipSpace

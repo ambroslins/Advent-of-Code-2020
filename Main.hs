@@ -10,6 +10,7 @@ import qualified Day4
 import qualified Day5
 import qualified Day6
 import qualified Day7
+import qualified Day8
 import System.Environment
 import Text.Read (readMaybe)
 
@@ -40,5 +41,6 @@ solutions =
       (4, Day4.solve),
       (5, Day5.solve),
       (6, Day6.solve),
-      (7, Day7.solve)
+      (7, Day7.solve),
+      (8, Day8.solve)
     ]
